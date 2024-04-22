@@ -7,6 +7,7 @@ using UnityEngine;
 public class VRWC_FollowTransform : MonoBehaviour
 {
     [Tooltip("Transform of the rigidbody to follow.")]
+
     public Transform target;
     public new Transform camera;
     Vector3 offset;
