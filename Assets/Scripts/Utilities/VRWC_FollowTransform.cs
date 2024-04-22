@@ -7,8 +7,8 @@ using UnityEngine;
 public class VRWC_FollowTransform : MonoBehaviour
 {
     [Tooltip("Transform of the rigidbody to follow.")]
-    public Transform target;
-    Vector3 offset;
+    [SerializeField] private Transform target;
+    private Vector3 offset;
 
     void Start()
     {
