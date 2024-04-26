@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 /// <summary>
@@ -13,10 +14,14 @@ public class VRWC_FollowTransform : MonoBehaviour
     Vector3 offset;
     Vector3 cameraOffset;
 
-    void Start()
+    IEnumerator Start()
     {
         offset = transform.localPosition - target.localPosition;
+        yield return new WaitForSeconds(2);
+        ResetCameraOffset();
     }
+
+     
 
     void Update()
     {
