@@ -13,12 +13,13 @@ public class VRWC_FollowTransform : MonoBehaviour
     public new Transform camera;
     Vector3 offset;
     Vector3 cameraOffset;
+    public bool resetOnStart;
 
-    IEnumerator Start()
+    void Start()
     {
         offset = transform.localPosition - target.localPosition;
-        yield return new WaitForSeconds(2);
-        ResetCameraOffset();
+        //if(resetOnStart)
+        //StartCoroutine(DelayResetCamera());
     }
 
      
@@ -31,6 +32,14 @@ public class VRWC_FollowTransform : MonoBehaviour
         transform.rotation = target.rotation;
     }
 
+    IEnumerator DelayResetCamera()
+    {
+        yield return new WaitForSeconds(1);
+        cameraOffset = camera.localPosition;
+        cameraOffset.y = 0;
+
+    }
+
     [ContextMenu("Reset Camera Offset")]
     public void ResetCameraOffset()
     {
@@ -38,9 +47,9 @@ public class VRWC_FollowTransform : MonoBehaviour
         cameraOffset.y = 0;
     }
 
-    private void OnValidate()
-    {
-        if (camera == null)
-            camera = GetComponentInChildren<Camera>().transform;
-    }
+    //private void OnValidate()
+    //{
+    //    if (camera == null)
+    //        camera = GetComponentInChildren<Camera>().transform;
+    //}
 }
