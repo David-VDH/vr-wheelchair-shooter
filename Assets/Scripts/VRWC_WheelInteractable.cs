@@ -20,6 +20,8 @@ public class VRWC_WheelInteractable : XRBaseInteractable
 
     GameObject grabPoint;
 
+    private AudioSource wheelAudio;
+
     public Text label1;
     public Text label2;
 

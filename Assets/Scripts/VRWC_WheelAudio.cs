@@ -5,12 +5,12 @@ using UnityEngine;
 /// </summary>
 public class VRWC_WheelAudio : MonoBehaviour
 {
-    AudioSource m_AudioSource;
+    [SerializeField] AudioSource m_AudioSource;
     Rigidbody m_Rigidbody;
 
     void Start()
     {
-        m_AudioSource = GetComponent<AudioSource>();
+        //m_AudioSource = GetComponent<AudioSource>();
         m_Rigidbody = GetComponent<Rigidbody>();
     }
 
