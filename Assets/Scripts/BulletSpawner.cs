@@ -6,6 +6,7 @@ public class BulletSpawner : MonoBehaviour
 {
     [SerializeField] private Transform bulletSpawnPoint;
     [SerializeField] private GameObject bulletPrefab;
+    [SerializeField] private Transform gunBaseTransform;
 
     [SerializeField] private float bulletSpeed = 10f;
 
