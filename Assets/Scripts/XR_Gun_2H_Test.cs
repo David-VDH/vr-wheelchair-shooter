@@ -27,7 +27,7 @@ public class XR_Gun_2H_Test : XRBaseInteractable
 
     public bool isDualInteractionActive; // Flag to detect dual interaction
 
-    public float recoilStrength = 0.85f; // Recoil strength magnitude
+    public float recoilStrength = 0.75f; // Recoil strength magnitude
     public Vector2 recoilAngleRange = new Vector2(-1f, 1f); // Random recoil angle range
 
     public bool canShoot = false;
@@ -116,20 +116,12 @@ public class XR_Gun_2H_Test : XRBaseInteractable
             Quaternion recoilRotation = Quaternion.Euler(recoilAngleX, recoilAngleY, 0);
 
             // Apply the recoil rotation
-            ApplyRecoilRotation(verticalSettings.handle, recoilRotation);
+            verticalSettings.handle.rotation *= recoilRotation;
         }
 
         // Reassert the Z-axis rotation to be zero
-        Vector3 currentHandleEulerAngles = verticalSettings.handle.eulerAngles;
-        verticalSettings.handle.eulerAngles = new Vector3(currentHandleEulerAngles.x, currentHandleEulerAngles.y, 0);
-    }
-
-    void ApplyRecoilRotation(Transform target, Quaternion recoilRotation)
-    {
-        if (target != null)
-        {
-            target.rotation *= recoilRotation;
-        }
+        Vector3 currentEulerAngles = verticalSettings.handle.eulerAngles;
+        verticalSettings.handle.eulerAngles = new Vector3(currentEulerAngles.x, currentEulerAngles.y, 0);
     }
 
     void UpdateRotation()

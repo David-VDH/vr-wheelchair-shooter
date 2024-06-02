@@ -9,15 +9,15 @@ public class VRWC_FollowTransform : MonoBehaviour
 {
     [Tooltip("Transform of the rigidbody to follow.")]
 
-    [SerializeField] private Transform frameTransform;
-    [SerializeField] private new Transform camera;
+    public Transform target;
+    public new Transform camera;
     Vector3 offset;
     Vector3 cameraOffset;
     public bool resetOnStart;
 
     void Start()
     {
-        offset = transform.localPosition - frameTransform.localPosition;
+        offset = transform.localPosition - target.localPosition;
         //if(resetOnStart)
         //StartCoroutine(DelayResetCamera());
     }
@@ -26,10 +26,10 @@ public class VRWC_FollowTransform : MonoBehaviour
 
     void Update()
     {
-        Vector3 rotatedOffset = frameTransform.localRotation * (offset - cameraOffset);
-        transform.localPosition = frameTransform.localPosition + rotatedOffset;
+        Vector3 rotatedOffset = target.localRotation * (offset - cameraOffset);
+        transform.localPosition = target.localPosition + rotatedOffset;
 
-        transform.rotation = frameTransform.rotation;
+        transform.rotation = target.rotation;
     }
 
     IEnumerator DelayResetCamera()
