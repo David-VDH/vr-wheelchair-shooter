@@ -984,6 +984,7 @@ MonoBehaviour:
     maxValue: 45
     currentValue: 0.5
     sensitivity: 180
+  gunBaseTransform: {fileID: 224571648}
   isDualInteractionActive: 0
   recoilStrength: 0.75
   recoilAngleRange: {x: -1, y: 1}

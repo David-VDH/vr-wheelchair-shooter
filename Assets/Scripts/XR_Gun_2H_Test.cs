@@ -21,7 +21,10 @@ public class XR_Gun_2H_Test : XRBaseInteractable
 
     private IXRSelectInteractor primaryInteractor;
     private IXRSelectInteractor secondaryInteractor;
-    private Vector3 basePosition;
+
+    private Vector3 gunBaseLocalPosition;
+    [SerializeField] private Transform gunBaseTransform;
+
     public bool isDualInteractionActive; // Flag to detect dual interaction
 
     public float recoilStrength = 0.75f; // Recoil strength magnitude
@@ -48,8 +51,9 @@ public class XR_Gun_2H_Test : XRBaseInteractable
         if (primaryInteractor == null)
         {
             primaryInteractor = args.interactorObject;
+
             // Adjust basePosition to be the offset from the collider's transform
-            basePosition = transform.InverseTransformPoint(primaryInteractor.transform.position);
+            gunBaseLocalPosition = gunBaseTransform.InverseTransformPoint(primaryInteractor.transform.position);
         }
         else if (secondaryInteractor == null)
         {
@@ -69,7 +73,7 @@ public class XR_Gun_2H_Test : XRBaseInteractable
                 secondaryInteractor = null;
 
                 // Update the basePosition to the current position of the new primary interactor.
-                basePosition = transform.InverseTransformPoint(primaryInteractor.transform.position);
+                gunBaseLocalPosition = gunBaseTransform.InverseTransformPoint(primaryInteractor.transform.position);
             }
             else
             {
@@ -98,7 +102,7 @@ public class XR_Gun_2H_Test : XRBaseInteractable
             }
             else
             {
-                canShoot= false;
+                canShoot = false;
             }   
         }
     }
@@ -123,11 +127,14 @@ public class XR_Gun_2H_Test : XRBaseInteractable
     void UpdateRotation()
     {
         Vector3 currentInteractorPosition = primaryInteractor.transform.position;
-        Vector3 baseWorldPosition = transform.TransformPoint(basePosition);
+        Vector3 baseWorldPosition = transform.TransformPoint(gunBaseLocalPosition);
         Vector3 displacement = currentInteractorPosition - baseWorldPosition;
 
-        ApplyRotation(verticalSettings, displacement.y);
-        ApplyRotation(horizontalSettings, displacement.x);
+        //transform the displacement to local space of the gunBaseTransform
+        Vector3 localDisplacement = gunBaseTransform.InverseTransformVector(displacement);
+
+        ApplyRotation(verticalSettings, localDisplacement.y);
+        ApplyRotation(horizontalSettings, localDisplacement.x);
     }
 
     void ApplyRotation(AxisRotationSettings settings, float displacement)
