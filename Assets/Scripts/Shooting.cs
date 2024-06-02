@@ -62,7 +62,7 @@ public class Shooting : MonoBehaviour
             if (device.TryGetFeatureValue(CommonUsages.trigger, out triggerValue) && triggerValue > 0.2f && xR_Gun_2H_Test.canShoot == true)
             {
                 Shoot(triggerValue);
-                
+                device.SendHapticImpulse(1, 1f, 0.1f);
             }
         }
     }
@@ -81,5 +81,6 @@ public class Shooting : MonoBehaviour
         }
 
         xR_Gun_2H_Test.ApplyRecoil();
+        
     }
 }

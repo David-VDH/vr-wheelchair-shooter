@@ -25,10 +25,10 @@ public class XR_Gun_2H_Test : XRBaseInteractable
     private Vector3 gunBaseLocalPosition;
     [SerializeField] private Transform gunBaseTransform;
 
-    public bool isDualInteractionActive; // Flag to detect dual interaction
+    public bool isDualInteractionActive; //Flag to detect dual interaction
 
-    public float recoilStrength = 0.75f; // Recoil strength magnitude
-    public Vector2 recoilAngleRange = new Vector2(-1f, 1f); // Random recoil angle range
+    public float recoilStrength = 0.85f; //Recoil strength magnitude
+    public Vector2 recoilAngleRange = new Vector2(-1f, 1f); //Random recoil angle range
 
     public bool canShoot = false;
 
