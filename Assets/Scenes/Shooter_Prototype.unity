@@ -2240,8 +2240,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -235.4}
-  m_SizeDelta: {x: 0, y: -470.9}
+  m_AnchoredPosition: {x: 0, y: -239}
+  m_SizeDelta: {x: 0, y: -614.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1819162830
 MonoBehaviour:
@@ -2698,8 +2698,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.9000244, y: -235.45001}
-  m_SizeDelta: {x: -56.6, y: 470.8}
+  m_AnchoredPosition: {x: 0.9000244, y: -273.1501}
+  m_SizeDelta: {x: -56.6, y: 546.2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2144609803
 MonoBehaviour:
@@ -2725,7 +2725,10 @@ MonoBehaviour:
 
 
     Make sure your surroundings are
-    clear'
+    clear
+
+
+    Shoot all Red Targets'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
