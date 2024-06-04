@@ -5,7 +5,7 @@ public class BulletSpawner : MonoBehaviour
     [SerializeField] private Transform bulletSpawnPoint;
     [SerializeField] private GameObject bulletPrefab;
 
-    [SerializeField] private float bulletSpeed = 13f;
+    [SerializeField] private float bulletSpeed = 65f;
 
     public void FireBullet()
     {
