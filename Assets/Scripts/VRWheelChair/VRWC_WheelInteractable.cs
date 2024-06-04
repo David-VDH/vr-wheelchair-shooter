@@ -20,12 +20,6 @@ public class VRWC_WheelInteractable : XRBaseInteractable
 
     GameObject grabPoint;
 
-    private AudioSource wheelAudio;
-
-    public Text label1;
-    public Text label2;
-
-
     private void Start()
     {
         m_Rigidbody = GetComponent<Rigidbody>();
@@ -45,13 +39,14 @@ public class VRWC_WheelInteractable : XRBaseInteractable
         interactionManager.CancelInteractableSelection(this);
 
         SpawnGrabPoint(interactor);
+        SendGrabHapticFeedback(interactor);
 
         StartCoroutine(BrakeAssist(interactor));
         StartCoroutine(MonitorDetachDistance(interactor));
 
         if (hapticsEnabled)
         {
-            StartCoroutine(SendHapticFeedback(interactor));
+            StartCoroutine(SendBrakeHapticFeedback(interactor));
         }
     }
 
@@ -113,7 +108,13 @@ public class VRWC_WheelInteractable : XRBaseInteractable
         }
     }
 
-    IEnumerator SendHapticFeedback(XRBaseInteractor interactor)
+    private void SendGrabHapticFeedback(XRBaseInteractor interactor)
+    {
+        ActionBasedController controller = interactor.GetComponent<ActionBasedController>();
+        controller.SendHapticImpulse(0.5f, 0.1f);
+    }
+
+    IEnumerator SendBrakeHapticFeedback(XRBaseInteractor interactor)
     {
         // Interval between iterations of coroutine, in seconds.
         float runInterval = 0.1f;

@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class BulletLifeTime : MonoBehaviour
 {
-    public float lifeDuration = 2f;
+    [SerializeField] private float lifeDuration = 2.5f;
 
     private void Start()
     {

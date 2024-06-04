@@ -1,10 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ShellCasingLifeTime : MonoBehaviour
 {
-    public float lifeDuration = 5f;
+    [SerializeField] float lifeDuration = 240f;
 
     private void Start()
     {

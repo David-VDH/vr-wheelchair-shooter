@@ -14,10 +14,8 @@ public class XR_Gun_2H_Test : XRBaseInteractable
         public float sensitivity = 100f;
     }
 
-    [SerializeField]
-    private AxisRotationSettings verticalSettings = new AxisRotationSettings();
-    [SerializeField]
-    private AxisRotationSettings horizontalSettings = new AxisRotationSettings();
+    [SerializeField] private AxisRotationSettings verticalSettings = new AxisRotationSettings();
+    [SerializeField] private AxisRotationSettings horizontalSettings = new AxisRotationSettings();
 
     private IXRSelectInteractor primaryInteractor;
     private IXRSelectInteractor secondaryInteractor;
@@ -25,10 +23,10 @@ public class XR_Gun_2H_Test : XRBaseInteractable
     private Vector3 gunBaseLocalPosition;
     [SerializeField] private Transform gunBaseTransform;
 
-    public bool isDualInteractionActive; //Flag to detect dual interaction
+    private bool isDualInteractionActive; //Flag to detect dual interaction
 
-    public float recoilStrength = 0.85f; //Recoil strength magnitude
-    public Vector2 recoilAngleRange = new Vector2(-1f, 1f); //Random recoil angle range
+    [SerializeField] private float recoilStrength = 0.85f; //Recoil strength magnitude
+    [SerializeField] private Vector2 recoilAngleRange = new Vector2(-1.5f, 1.5f); //Random recoil angle range
 
     public bool canShoot = false;
 
@@ -46,7 +44,7 @@ public class XR_Gun_2H_Test : XRBaseInteractable
         base.OnDisable();
     }
 
-    void StartGrab(SelectEnterEventArgs args)
+    private void StartGrab(SelectEnterEventArgs args)
     {
         if (primaryInteractor == null)
         {
@@ -62,7 +60,7 @@ public class XR_Gun_2H_Test : XRBaseInteractable
         }
     }
 
-    void EndGrab(SelectExitEventArgs args)
+    private void EndGrab(SelectExitEventArgs args)
     {
         if (args.interactorObject == primaryInteractor)
         {
@@ -124,7 +122,7 @@ public class XR_Gun_2H_Test : XRBaseInteractable
         verticalSettings.handle.eulerAngles = new Vector3(currentEulerAngles.x, currentEulerAngles.y, 0);
     }
 
-    void UpdateRotation()
+    private void UpdateRotation()
     {
         Vector3 currentInteractorPosition = primaryInteractor.transform.position;
         Vector3 baseWorldPosition = transform.TransformPoint(gunBaseLocalPosition);
@@ -137,7 +135,7 @@ public class XR_Gun_2H_Test : XRBaseInteractable
         ApplyRotation(horizontalSettings, localDisplacement.x);
     }
 
-    void ApplyRotation(AxisRotationSettings settings, float displacement)
+    private void ApplyRotation(AxisRotationSettings settings, float displacement)
     {
         float rotation = displacement * settings.sensitivity;  // Convert displacement to rotation based on sensitivity
 
